@@ -1,0 +1,134 @@
+@keyframes rd-spin { to { transform: rotate(360deg); } }
+:where([data-react-dock] [data-dock-spinner]) { animation: rd-spin 800ms linear infinite; }
+:where([data-react-dock] [aria-busy="true"]) { cursor: progress; }
+:where([data-react-dock]) {
+  --rd-surface: rgb(255 255 255 / 94%);
+  --rd-foreground: #202520;
+  --rd-border: #d5dad4;
+  --rd-hover: #edf0eb;
+  --rd-active: #dfe8dc;
+  --rd-indicator-duration: 240ms;
+  --rd-radius: 16px;
+  --rd-item-size: 44px;
+  --rd-gap: 4px;
+  --rd-padding: var(--rd-gap);
+  --rd-bottom: 24px;
+  --rd-z-index: 100;
+  position: fixed;
+  inset: auto 0 calc(var(--rd-bottom) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--rd-z-index);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--rd-foreground);
+  font: inherit;
+}
+:where([data-react-dock] [data-slot="dock"]) {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: var(--rd-gap);
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  border-radius: var(--rd-radius);
+  background: transparent;
+  pointer-events: auto;
+  max-width: calc(100vw - 32px);
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  min-width: 0;
+}
+:where([data-react-dock] [data-dock-frame]) { position: relative; display: flex; align-items: center; justify-content: center; box-sizing: border-box; max-width: calc(100vw - 32px); pointer-events: auto; }
+:where([data-react-dock] [data-dock-frame]) { gap: var(--rd-gap); padding: var(--rd-padding); border: 0; box-shadow: 0 0 0 1px var(--rd-border); border-radius: var(--rd-radius); background: var(--rd-surface); backdrop-filter: blur(12px); }
+:where([data-react-dock] [data-paginated="true"] [data-slot="dock"]) { padding: 0; border: 0; box-shadow: none; background: transparent; backdrop-filter: none; }
+:where([data-react-dock] [data-dock-arrow]) { flex: 0 0 44px; width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; border-radius: calc(var(--rd-radius) - 4px); background: transparent; color: inherit; font: inherit; font-size: 24px; cursor: pointer; }
+:where([data-react-dock] [data-dock-arrow]:disabled) { opacity: .35; cursor: default; }
+:where([data-react-dock] [data-dock-arrow]:not(:disabled):hover) { background: var(--rd-hover); }
+:where([data-react-dock] [data-slot="item"]) { position: relative; flex: 0 0 auto; }
+:where([data-react-dock] [data-slot="item"] > :is(button, a)) {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--rd-item-size);
+  height: var(--rd-item-size);
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: calc(var(--rd-radius) - 4px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+:where([data-react-dock] [data-slot="item"] > :is(button, a))::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--rd-hover);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease-out;
+}
+:where([data-react-dock] [data-slot="indicator"]) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: calc(var(--rd-radius) - 4px);
+  background: var(--rd-active);
+  pointer-events: none;
+  transition: transform var(--rd-indicator-duration) cubic-bezier(.22, 1, .36, 1), width var(--rd-indicator-duration) ease-out, height var(--rd-indicator-duration) ease-out;
+}
+:where([data-react-dock] [data-slot="indicator"][data-visible="false"]) { visibility: hidden; }
+:where([data-react-dock] :is(button, a):focus-visible) { outline: 2px solid currentColor; outline-offset: 3px; }
+:where([data-react-dock] :is(button, a)) { -webkit-tap-highlight-color: transparent; }
+:where([data-react-dock] [data-disabled="true"]) { opacity: .45; }
+:where([data-react-dock] [data-disabled="true"] > button) { cursor: not-allowed; }
+:where([data-react-dock] [data-slot="icon"]) { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+:where([data-react-dock] [data-slot="tooltip"]) {
+  position: absolute;
+  bottom: calc(100% + var(--rd-tooltip-gap, 10px));
+  left: 50%;
+  transform: translateX(calc(-50% + var(--rd-tooltip-shift, 0px)));
+  width: max-content;
+  max-width: min(180px, 50vw);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  padding: 6px 9px;
+  border: 1px solid var(--rd-border);
+  border-radius: 6px;
+  color: var(--rd-foreground);
+  background: var(--rd-surface);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  :where([data-react-dock] [data-slot="item"] > :is(button, a):hover)::before { opacity: 1; }
+}
+:where([data-react-dock] [data-slot="item"] > :is(button, a):active)::before { opacity: 1; transition: none; }
+:where([data-react-dock][data-touch-input="true"] [data-slot="item"] > :is(button, a)) { transition: none; }
+:where([data-react-dock][data-touch-input="true"] [data-slot="item"] > :is(button, a):hover) { background: transparent; }
+:where([data-react-dock][data-touch-input="true"] [data-slot="item"] > :is(button, a):active) { background: transparent; box-shadow: none; }
+:where([data-react-dock][data-touch-input="true"] [data-slot="item"] > :is(button, a))::before { opacity: 0; transition: none; }
+:where([data-react-dock][data-touch-input="true"] [data-dock-arrow]:is(:hover, :active)) { background: transparent; box-shadow: none; transition: none; }
+@media (max-width: 767px) {
+  :where([data-react-dock][data-visibility="desktop"]) { display: none; }
+}
+@media (min-width: 768px) {
+  :where([data-react-dock][data-visibility="mobile"]) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-react-dock] *) { transition: none !important; animation: none !important; }
+}

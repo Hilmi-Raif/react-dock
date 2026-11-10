@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Dock - React Navigation, Docs &amp; Playground</title>
+    <meta name="description" content="React Dock: an editable React and TypeScript navigation component with tooltips and responsive item groups." />
+    <link rel="canonical" href="https://hilmi-raif.github.io/react-dock/" />
+    <link rel="icon" type="image/svg+xml" href="/branding/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/branding/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f5f4ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#19231d" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="React Dock" />
+    <meta property="og:title" content="React Dock - React Navigation, Docs &amp; Playground" />
+    <meta property="og:description" content="Documentation and playground for an editable React navigation dock." />
+    <meta property="og:url" content="https://hilmi-raif.github.io/react-dock/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://hilmi-raif.github.io/react-dock/branding/social-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="React Dock - React navigation component, documentation and playground" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://hilmi-raif.github.io/react-dock/branding/social-card.png" />
+    <meta name="twitter:image:alt" content="React Dock - React navigation component, documentation and playground" />
+    <meta name="twitter:title" content="React Dock - React Navigation, Docs &amp; Playground" />
+    <meta name="twitter:description" content="A React and TypeScript navigation dock with tooltips and responsive item groups." />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href="/branding/react-dock.svg" as="image" type="image/svg+xml" />
+    <style>
+      html, body {
+        margin: 0;
+        background-color: #f5f4ec;
+        color: #24382d;
+      }
+      html[data-dark="true"], html[data-dark="true"] body {
+        background-color: #19231d !important;
+        color: #e8eee6 !important;
+        color-scheme: dark !important;
+      }
+      html[data-dark="false"], html[data-dark="false"] body {
+        background-color: #f5f4ec !important;
+        color: #24382d !important;
+        color-scheme: light !important;
+      }
+      body {
+        opacity: 0;
+        transition: opacity 220ms ease-out;
+      }
+      html[data-ready="true"] body {
+        opacity: 1;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body {
+          transition: none !important;
+        }
+      }
+    </style>
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('react-dock-theme');
+          var isDark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var root = document.documentElement;
+          root.setAttribute('data-dark', isDark ? 'true' : 'false');
+          var bg = isDark ? '#19231d' : '#f5f4ec';
+          var scheme = isDark ? 'dark' : 'light';
+          root.style.backgroundColor = bg;
+          root.style.colorScheme = scheme;
+        } catch (e) {}
+      })();
+    </script>
+    <noscript>
+      <style>
+        body {
+          opacity: 1 !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body><div id="root"></div><script type="module" src="/main.tsx"></script></body>
+</html>

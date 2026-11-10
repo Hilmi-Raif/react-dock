@@ -1,0 +1,15 @@
+node_modules/
+dist/
+demo-dist/
+*.tgz
+.registry-test/
+.vitest/
+coverage/
+playwright-report/
+test-results/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

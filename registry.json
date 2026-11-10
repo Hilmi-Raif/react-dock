@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "react-dock",
+  "homepage": "https://github.com/Hilmi-Raif/react-dock",
+  "items": [{
+    "name": "react-dock",
+    "type": "registry:component",
+    "title": "ReactDock",
+    "description": "React dock with section navigation, tooltips, and responsive item groups. Requires React 18 or newer.",
+    "files": [
+      { "path": "registry/react-dock/dock.tsx", "type": "registry:component", "target": "@ui/react-dock/dock.tsx" },
+      { "path": "registry/react-dock/index.ts", "type": "registry:component", "target": "@ui/react-dock/index.ts" },
+      { "path": "registry/react-dock/types.ts", "type": "registry:component", "target": "@ui/react-dock/types.ts" },
+      { "path": "registry/react-dock/use-active-section.ts", "type": "registry:component", "target": "@ui/react-dock/use-active-section.ts" },
+      { "path": "registry/react-dock/use-dock-interaction.ts", "type": "registry:component", "target": "@ui/react-dock/use-dock-interaction.ts" },
+      { "path": "registry/react-dock/use-scroll-target.ts", "type": "registry:component", "target": "@ui/react-dock/use-scroll-target.ts" },
+      { "path": "registry/react-dock/use-section-navigation.ts", "type": "registry:component", "target": "@ui/react-dock/use-section-navigation.ts" },
+      { "path": "registry/react-dock/styles.css", "type": "registry:component", "target": "@ui/react-dock/styles.css" }
+    ]
+  }]
+}
